@@ -8,24 +8,20 @@ public class TestConnection {
 
     private String dbms = "mariadb";
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-    static final String DB_URL = "jdbc:mariadb://127.0.0.1/db";
+    static final String DB_URL = "jdbc:mariadb://localhost:3306";
 
     //  Database credentials
     static final String USER = "root";
     static final String PASS = "root";
 
     public void getConnection() throws SQLException {
-        String userName = "root";
-        String password = "root";
-        String url = "jdbc:mariadb://localhost:3306";
-        String driver = "org.mariadb.jdbc.Driver";
 
         Connection con = null;
         Statement st = null;
 
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, userName, password);
+            Class.forName(JDBC_DRIVER);
+            con = DriverManager.getConnection(DB_URL, USER, PASS);
             st = con.createStatement();
             System.out.println("Connection is successful");
         } catch (Exception e) {
