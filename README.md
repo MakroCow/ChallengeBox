@@ -7,3 +7,7 @@
 - Open Browser: Use your favorite browser
 - VM Options: --add-modules java.se
 - JRE: Default 
+
+Start Project: 
+- MariaDB: mariadb-installation-folder/bin/mysqld.exe 
+- Wildfly: wilfly-installation-folder/bin/standalone.bat
