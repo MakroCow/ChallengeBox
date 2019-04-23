@@ -2,7 +2,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 public class TestConnection {
 
@@ -15,10 +14,8 @@ public class TestConnection {
     static final String PASS = "root";
 
     public void getConnection() throws SQLException {
-
         Connection con = null;
         Statement st = null;
-
         try {
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -28,5 +25,4 @@ public class TestConnection {
             e.printStackTrace();
         }
     }
-
 }
