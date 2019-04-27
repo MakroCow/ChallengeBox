@@ -10,7 +10,7 @@
 
     <packaging>war</packaging>
 
-    <name>Simple Java EE Demo Application</name>
+    <name>Challenge Box Application</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -148,7 +148,7 @@
     </dependencies>
 
     <build>
-        <finalName>simpledemo</finalName>
+        <finalName>challengeBox</finalName>
         <plugins>
             <plugin> <!-- maven-compiler-plugin -->
                 <groupId>org.apache.maven.plugins</groupId>

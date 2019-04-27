@@ -1,15 +1,13 @@
 package entities;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 
 @Entity
-@Transactional
-@Table(name = "icecream")
-public class icecream {
+@Table(name = "icecreame")
+public class Icecream {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @Column(name="taste")
