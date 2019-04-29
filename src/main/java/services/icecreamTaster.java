@@ -11,7 +11,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 
-@Path("article")
+@Path("article/")
 @Singleton
 public class icecreamTaster {
 
@@ -23,7 +23,6 @@ public class icecreamTaster {
     @Transactional
     @Path("all")
     public String getAllArticles() {
-        System.out.println("HIERE I AM");
         Icecream ice = new Icecream();
         ice.setTaste("strawbelli");
         em.persist(ice);

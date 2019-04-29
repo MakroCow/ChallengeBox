@@ -1,25 +1,28 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "icecream")
-public class Icecream {
+public class Challenge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
-    @Column(name="taste")
+    @Column
     private String taste;
 
-    public String getTaste() {
-        return taste;
-    }
+    @Column
+    private String description;
 
-    public void setTaste(String taste) {
-        this.taste = taste;
-    }
+    @Column
+    private String titel;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tag_id")
+    @OrderColumn
+    private List<Tag> tags;
 
     public int getId() {
         return id;
