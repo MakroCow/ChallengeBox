@@ -20,11 +20,15 @@ public class Challenge {
     @Column
     private String description;
 
-
-    /*@OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tag_id")
-    @OrderColumn
-    private List<Tag> tags;*/
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "challenge_tag",
+            joinColumns = @JoinColumn(name = "challenge_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags;
 
     //@Column
     //private ... picture;
@@ -45,15 +49,13 @@ public class Challenge {
         this.description = description;
     }
 
-/*    public List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
-    }*/
-
-
+    }
 
 
     public int getId() {

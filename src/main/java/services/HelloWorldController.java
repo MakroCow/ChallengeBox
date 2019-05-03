@@ -1,6 +1,7 @@
 package services;
 
 import entities.Challenge;
+import entities.Tag;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,10 +51,21 @@ public class HelloWorldController {
         String[] challengetitels = {"Laufen", "Gehen", "Sprechen", "Schreien", "Kochen", "Kennenlernen"};
         String[] challgedescriptions = {"Gehe heute 10 Minuten länger laufen, als letztesmal", "Gehe nach dem Abendessen noch eine Runde und versuche dabei ein Tier zu sichten", "Sprich deinen Schwarm auf seine Frisur an - Sei es positiv oder negativ", "Kletter auf den höchsten Punkt im 2km Umkreis und schreie einen Tarzan Schrei", "Backe heute einen Kuchen mit mind. 2 grünen Zutaten", "Frag jemanden anch seiner Handynummer"};
 
+        String[] tags = {"Sport", "Kunst", "Kultur", "Ernährung"};
+        List<Tag> tagArray = new ArrayList<>();
+
+        for(String k: tags) {
+            Tag tag = new Tag();
+            tag.setTagName(k);
+            em.persist(tag);
+            tagArray.add(tag);
+        }
+
         for (int i = 0; i < challengetitels.length; i++) {
             Challenge c = new Challenge();
             c.setTitel(challengetitels[i]);
             c.setDescription(challgedescriptions[i]);
+            c.setTags(tagArray);
             em.persist(c);
         }
 
