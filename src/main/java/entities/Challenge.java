@@ -3,6 +3,8 @@ package entities;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
+
 @Entity
 @NamedQueries({
         @NamedQuery(name = "findAllChallenges", query = "SELECT c FROM Challenge c"),
@@ -20,9 +22,11 @@ public class Challenge {
     @Column
     private String description;
 
-    @ManyToMany(cascade = {
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = {
             CascadeType.PERSIST,
-            CascadeType.MERGE
+            CascadeType.MERGE,
     })
     @JoinTable(name = "challenge_tag",
             joinColumns = @JoinColumn(name = "challenge_id"),

@@ -24,6 +24,7 @@ public class HelloWorldController {
 
     @Path("/1")
     @GET
+    @Transactional
     @Produces(MediaType.APPLICATION_JSON)
     public List<Challenge> helloWorld1() {
         Query query = em.createNamedQuery("findAllChallenges");
@@ -34,6 +35,7 @@ public class HelloWorldController {
 
     @Path("/2/{id}")
     @GET
+    @Transactional
     @Produces(MediaType.APPLICATION_JSON)
     public List<Challenge> helloWorld2(@PathParam("id") int id) {
         Query query = em.createNamedQuery("findChallengeByID");
