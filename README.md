@@ -1,5 +1,6 @@
 # ChallengeBox
 
+## Installation 
 1. Install Wildfly 16.0.0 Final from [https://wildfly.org/downloads/](https://wildfly.org/downloads/) (extract the download to a preferred directory)
 2. Download the modules.7z from Moodle and extract it. Merge the extracted directory with the 'modules' directory in your installation directory.
 3. Im Installationsverzeichnis von Wildfly `/standalone/configuration/standalone.xml` unter Datasource 
@@ -24,3 +25,13 @@
 - JRE: Default 
 - In dem Deployment-Tab die ChallengeBox.war hinzufügen
 7. Start Wildfly: wilfly-installation-folder/bin/standalone.bat (Windows) or wilfly-installation-folder/bin/standalone.sh (Linux)
+
+### Erste Schritte
+`http://localhost:8080/challengeBox/api/helloworld/fillWithExampleData` aufrufen, dann werden Beispieldaten in die Datenbank geschrieben
+
+## Endpunkte 
+Diese Endpunkte sind nur zu Testzwecken und beispielhafter Darstellung angelegt worden
+- `api/helloworld/1` - Alle Challenges ausgeben
+- `api/helloworld/2/5` - Challenge mit der jeweiligen id (hier 5) ausgeben
+
+## 
