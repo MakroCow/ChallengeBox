@@ -10,13 +10,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/createChallenge")
+@Path("/challenge")
 public class CreateChallengeService {
 
     @PersistenceContext
     EntityManager em;
 
-    @Path("")
+    @Path("/add")
     @POST
     @Transactional
     @Consumes("application/x-www-form-urlencoded")

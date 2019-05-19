@@ -5,6 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "findAllTasks", query = "SELECT t FROM Task t"),
+        @NamedQuery(name = "findDoneTasks", query = "SELECT t FROM Task t WHERE t.done is not null"),
+        @NamedQuery(name = "findTerminatedTasks", query = "SELECT t FROM Task t WHERE t.done is not null or t.failed is not null"),
+        @NamedQuery(name = "findOpenTasks", query = "SELECT t FROM Task t WHERE t.done is null and t.failed is null")}
+)
 public class Task {
 
     @Id
@@ -12,13 +18,16 @@ public class Task {
     public int id;
 
     @Column
-    public Boolean accepted;
+    public Date accepted;
 
     @Column
-    public Date date;
+    public Date done;
 
     @Column
-    public Boolean beaten;
+    public Date beaten;
+
+    @Column
+    public Date failed;
 
     @Column
     @OneToMany(fetch = FetchType.LAZY)

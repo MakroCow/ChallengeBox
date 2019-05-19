@@ -18,11 +18,7 @@ import javax.ws.rs.core.Application;
                 description = "Challenge Box API",
                 license = @License(name = "Apache 2.0", url = "http://localhost:8080/challengeBox"),
                 contact = @Contact(name = "Chrocani", email = "beispielemail@beispiel.com")
-        ),
-        security = {
-                @SecurityRequirement(name = "req 1", scopes = {"a", "b"}),
-                @SecurityRequirement(name = "req 2", scopes = {"b", "c"})
-        }
+        )
 )
 @ApplicationPath("api")
 public class JEEApplication extends Application {
