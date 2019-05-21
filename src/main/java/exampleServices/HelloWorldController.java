@@ -1,4 +1,4 @@
-package services;
+package exampleServices;
 
 import entities.Challenge;
 import entities.Tag;
@@ -29,7 +29,6 @@ public class HelloWorldController {
     public List<Challenge> helloWorld1() {
         Query query = em.createNamedQuery("findAllChallenges");
         List<Challenge> challenges = query.getResultList();
-        //return challenges.stream().map(Challenge::toString).collect(Collectors.joining(", "));
         return challenges;
     }
 
@@ -37,11 +36,9 @@ public class HelloWorldController {
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Challenge> helloWorld2(@PathParam("id") int id) {
-        Query query = em.createNamedQuery("findChallengeByID");
-        query.setParameter("id", id);
-        List<Challenge> challenges = query.getResultList();
-        return challenges;
+    public Challenge helloWorld2(@PathParam("id") int id) {
+        Challenge c = em.find(Challenge.class, id);
+        return c;
     }
 
     @Path("/fillWithExampleData")
@@ -53,7 +50,7 @@ public class HelloWorldController {
         String[] challengetitels = {"Laufen", "Gehen", "Sprechen", "Schreien", "Kochen", "Kennenlernen"};
         String[] challgedescriptions = {"Gehe heute 10 Minuten länger laufen, als letztesmal", "Gehe nach dem Abendessen noch eine Runde und versuche dabei ein Tier zu sichten", "Sprich deinen Schwarm auf seine Frisur an - Sei es positiv oder negativ", "Kletter auf den höchsten Punkt im 2km Umkreis und schreie einen Tarzan Schrei", "Backe heute einen Kuchen mit mind. 2 grünen Zutaten", "Frag jemanden anch seiner Handynummer"};
 
-        String[] tags = {"Sport", "Kunst", "Kultur", "Ernährung"};
+        String[] tags = {"Kürzer als 10 min", "Benötigt Küche", "Dauer bis 1h", "Benötigt Computer", "Nicht krank"};
         List<Tag> tagArray = new ArrayList<>();
 
         for(String k: tags) {
@@ -65,9 +62,13 @@ public class HelloWorldController {
 
         for (int i = 0; i < challengetitels.length; i++) {
             Challenge c = new Challenge();
-            c.setTitel(challengetitels[i]);
+            c.setTitle(challengetitels[i]);
             c.setDescription(challgedescriptions[i]);
             c.setTags(tagArray);
+            c.setSportPoints(0);
+            c.setNutritionPoints(0);
+            c.setMentalPoints(0);
+            System.out.println(c);
             em.persist(c);
         }
 

@@ -3,12 +3,9 @@ package entities;
 import javax.persistence.*;
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
-
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "findAllChallenges", query = "SELECT c FROM Challenge c"),
-        @NamedQuery(name = "findChallengeByID", query = "SELECT c FROM Challenge c WHERE c.id = :id")}
+        @NamedQuery(name = "findAllChallenges", query = "SELECT c FROM Challenge c")}
 )
 public class Challenge {
 
@@ -17,7 +14,7 @@ public class Challenge {
     public int id;
 
     @Column
-    private String titel;
+    private String title;
 
     @Column
     private String description;
@@ -25,24 +22,34 @@ public class Challenge {
     @ManyToMany(
             fetch = FetchType.EAGER,
             cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-    })
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+            })
     @JoinTable(name = "challenge_tag",
             joinColumns = @JoinColumn(name = "challenge_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
 
-    //@Column
+    //@Column TODO
     //private ... picture;
 
-    public String getTitel() {
-        return titel;
+    //Challenge Score Points
+    @Column
+    private int sportPoints;
+
+    @Column
+    private int nutritionPoints;
+
+    @Column
+    private int mentalPoints;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -61,20 +68,43 @@ public class Challenge {
         this.tags = tags;
     }
 
-
     public int getId() {
         return id;
-    }
-
-    public String getTitle() {
-        return titel;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public int getSportPoints() {
+        return sportPoints;
+    }
+
+    public void setSportPoints(int sportPoints) {
+        this.sportPoints = sportPoints;
+    }
+
+    public int getNutritionPoints() {
+        return nutritionPoints;
+    }
+
+    public void setNutritionPoints(int nutritionPoints) {
+        this.nutritionPoints = nutritionPoints;
+    }
+
+    public int getMentalPoints() {
+        return mentalPoints;
+    }
+
+    public void setMentalPoints(int mentalPoints) {
+        this.mentalPoints = mentalPoints;
+    }
+
     public String toString() {
-        return id + " " + titel + " " + description;
+        return id + " " + title + " " + description + " | mental: "+ mentalPoints + " nutrition: "+nutritionPoints+" sport: " + sportPoints;
+    }
+
+    public int points() {
+        return sportPoints + nutritionPoints + mentalPoints;
     }
 }

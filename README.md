@@ -17,14 +17,17 @@
                                                                   <driver-class>com.mysql.jdbc.Driver</driver-class>
                                                                   <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
                                                               </driver>` eintragen.
-4. Install MariaDB Server ([https://mariadb.com/downloads/](https://mariadb.com/downloads/))and start MariaDB (Windows: locate installation folder and run the ./bin/mysqld.exe)
+4. Install MariaDB Server ([https://mariadb.com/downloads/](https://mariadb.com/downloads/)and start MariaDB (Windows: locate installation folder and run the ./bin/mysqld.exe)
 5. Edit 'Run Configurations' to: 
-- Application Server: JBoss 8.0.0.Final
-- Open Browser: Use your favorite browser
-- VM Options: --add-modules java.se
-- JRE: Default 
-- In dem Deployment-Tab die ChallengeBox.war hinzufügen
+     - Application Server: JBoss 8.0.0.Final
+     - Open Browser: Use your favorite browser
+     - VM Options: --add-modules java.se
+     - JRE: Default 
+     - In dem Deployment-Tab die ChallengeBox.war hinzufügen
+6. In der MariaDB ein Schema mit dem Namen "challengeboxdb" anlegen. (In Intellij im Tab `Database` eine Verbindung herstellen und mit Rechtsklick auf `/MySQL@localhost/schmas/mysql` "New" -> "Schema")
+
 7. Start Wildfly: wilfly-installation-folder/bin/standalone.bat (Windows) or wilfly-installation-folder/bin/standalone.sh (Linux)
+8. In Intellij das Hibernate Facet hinzufügen, damit die Symbole in JPA erkannt werden. Dafür `/src/main/java/resources/META-INF/persistence.xml` öffnen und im Pop-Up das Facet von Intellij hinzufügen lassen. 
 
 ### Erste Schritte
 `http://localhost:8080/challengeBox/api/helloworld/fillWithExampleData` aufrufen, dann werden Beispieldaten in die Datenbank geschrieben
@@ -34,4 +37,6 @@ Diese Endpunkte sind nur zu Testzwecken und beispielhafter Darstellung angelegt 
 - `api/helloworld/1` - Alle Challenges ausgeben
 - `api/helloworld/2/5` - Challenge mit der jeweiligen id (hier 5) ausgeben
 
-## 
+## Swagger 
+Endpoint Config ist unter `http://localhost:8080/challengeBox/api/openapi.json` und `http://localhost:8080/challengeBox/api/openapi.yaml` verfügbar. 
+Zur Visualisierung und Clientgenerierung für Angular auf der Seite von `https://editor.swagger.io/` die .json einfügen und Client herunterladen (unter `>Generate Client`). 
