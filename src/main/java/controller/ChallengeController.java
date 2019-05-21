@@ -3,6 +3,7 @@ package controller;
 import entities.Challenge;
 import services.ChallengeService;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,7 +12,8 @@ import java.util.List;
 @Path("/challenge")
 public class ChallengeController {
 
-    ChallengeService challengeService = new ChallengeService();
+    @Inject
+    ChallengeService challengeService;
 
     @Path("/all")
     @GET
@@ -31,7 +33,7 @@ public class ChallengeController {
     @Path("/tag")
     @POST
     @Produces({"application/json"})
-    public List<Challenge> getChallengesByTags(@FormParam("tags") List<String> tagNames) {
+    public List<Challenge> getChallengsByTags(@FormParam("tags") List<String> tagNames) {
         return challengeService.getChallengesByTags(tagNames);
     }
 

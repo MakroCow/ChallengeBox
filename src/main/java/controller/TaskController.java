@@ -4,6 +4,7 @@ import entities.Challenge;
 import entities.Task;
 import services.TaskService;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,7 +13,8 @@ import java.util.List;
 @Path("/task")
 public class TaskController {
 
-    TaskService taskService = new TaskService();
+    @Inject
+    TaskService taskService;
 
     @Path("/id/{id}")
     @GET

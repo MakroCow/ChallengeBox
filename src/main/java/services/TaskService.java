@@ -3,6 +3,7 @@ package services;
 import entities.Challenge;
 import entities.Task;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.Date;
 import java.util.List;
 
+@RequestScoped
 public class TaskService {
 
     @PersistenceContext

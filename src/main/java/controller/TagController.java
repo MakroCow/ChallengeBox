@@ -4,6 +4,7 @@ import entities.Challenge;
 import entities.Tag;
 import services.TagService;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,7 +13,8 @@ import java.util.List;
 @Path("/tag")
 public class TagController {
 
-    TagService tagService = new TagService();
+    @Inject
+    TagService tagService;
 
     @Path("/all")
     @GET

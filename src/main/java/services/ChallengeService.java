@@ -3,6 +3,7 @@ package services;
 import entities.Challenge;
 import entities.Tag;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,14 +13,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequestScoped
 public class ChallengeService {
 
     @PersistenceContext
     EntityManager em;
 
-
     public List<Challenge> getChallenges() {
+        System.out.println(em);
         Query query = em.createNamedQuery("findAllChallenges");
+        System.out.println(query);
         return query.getResultList();
     }
 
@@ -59,7 +62,7 @@ public class ChallengeService {
     //TODO sollten wir hier ausschließen, dass ein User eine Challenge ein zweites mal bekommt?
     //gets 3 challenges for daily
     public List<Challenge> getDaily() {
-        List<Challenge> personalChallenges = getChallengesByTags(new ArrayList<>(Arrays.asList("Sport", "Küche"))); //TODO hardcoded tags über post holen
+        List<Challenge> personalChallenges = getChallengesByTags(new ArrayList<>(Arrays.asList("Dauer bis 1h"))); //TODO hardcoded tags über post holen
         Collections.shuffle(personalChallenges);
         return personalChallenges.stream().limit(3).collect(Collectors.toList());
     }
@@ -69,6 +72,7 @@ public class ChallengeService {
                                      int sportScore,
                                      int nutritionScore,
                                      int mentalScore) {
+        //TODO validierung der parameter
         Challenge c = new Challenge();
         c.setTitle(title);
         c.setDescription(description);
