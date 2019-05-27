@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  db:
+    image: mariadb:latest
+    networks:
+      - backend
+  wildfly:
+    image: makrocow/challengebox-backend:latest
+    networks:
+      - backend
+networks:
+  backend:

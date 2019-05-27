@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  db:
+    container_name: challengebox-backend-mariadb_hub
+    environment:
+      MYSQL_DATABASE: "challengeboxdb"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+  wildfly:
+    container_name: challengebox-backend-wildfly_hub
+    ports:
+      - "8080:8080"
+    command: bash -c "/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -c standalone-custom.xml"

@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <version.spec.java>11</version.spec.java>
+        <version.spec.java>8</version.spec.java>
         <version.spec.javaee-api>8.0</version.spec.javaee-api>
         <version.spec.ejb>3.2</version.spec.ejb>
 
@@ -186,6 +186,7 @@
                             </includes>
                         </resource>
                     </webResources>
+                    <outputDirectory>target/deployments</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
