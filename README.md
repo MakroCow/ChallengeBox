@@ -1,6 +1,6 @@
 # ChallengeBox
 
-Frontend for the Challenge Application that supplies you with new challenges every day.
+Backend for the Challenge Application that supplies you with new challenges every day.
 
 To build the project yourself you need a local Wildfly server, Maven, and a Java JDK of course. 
 
@@ -43,7 +43,7 @@ foo@bar:~/ChallengeBox$ docker run -it --rm --name my-maven-project -v "$(pwd)":
 ```
 
 Finally we can deploy the `challengeBox.war`. The repository holds a little docker-compose.yml which makes the deploy
-more convenient. You will need [docker-compose](https://docs.docker.com/compose/install/) installed.
+more convenient.
 
 Just let docker-compose let the magic happen (this might take a while for the first time):
 ```console
