@@ -20,9 +20,7 @@ public class ChallengeService {
     EntityManager em;
 
     public List<Challenge> getChallenges() {
-        System.out.println(em);
         Query query = em.createNamedQuery("findAllChallenges");
-        System.out.println(query);
         return query.getResultList();
     }
 

@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NamedQueries({
@@ -32,7 +33,7 @@ public class Challenge {
     private List<Tag> tags;
 
     //@Column TODO
-    //private ... picture;
+    //private ... picture;org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags:
 
     //Challenge Score Points
     @Column

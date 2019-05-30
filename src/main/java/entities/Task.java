@@ -29,8 +29,66 @@ public class Task {
     @Column
     public Date failed;
 
-    @Column
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "challenge_id")
-    public List<Challenge> challenge_id;
+    @ManyToOne(fetch=FetchType.EAGER)
+    public Challenge challenge;
+
+    public Task(){
+        super();
+    }
+
+    public Task(Date accepted, Date done, Date beaten, Date failed, Challenge challenge) {
+        this.accepted = accepted;
+        this.done = done;
+        this.beaten = beaten;
+        this.failed = failed;
+        this.challenge = challenge;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Date accepted) {
+        this.accepted = accepted;
+    }
+
+    public Date getDone() {
+        return done;
+    }
+
+    public void setDone(Date done) {
+        this.done = done;
+    }
+
+    public Date getBeaten() {
+        return beaten;
+    }
+
+    public void setBeaten(Date beaten) {
+        this.beaten = beaten;
+    }
+
+    public Date getFailed() {
+        return failed;
+    }
+
+    public void setFailed(Date failed) {
+        this.failed = failed;
+    }
+
+    public Challenge getChallenge() {
+        return challenge;
+    }
+
+    public void setChallenge(Challenge challenge) {
+        this.challenge = challenge;
+    }
 }

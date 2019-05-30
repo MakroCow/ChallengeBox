@@ -2,6 +2,7 @@ package exampleServices;
 
 import entities.Challenge;
 import entities.Tag;
+import entities.Venturer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -70,6 +71,15 @@ public class HelloWorldController {
             c.setMentalPoints(0);
             System.out.println(c);
             em.persist(c);
+        }
+
+        String[] venturerNames = {"Hans", "Brunhilde", "Maxi"};
+        String[] venturerFirstNames = {"Wurst", "Blabla", "Musterfrau"};
+        String[] venturerEmail = {"hans@wurst.de", "b.blabla@hallo.de", "m.muster@frau.de"};
+        String[] venturerPasswort = {"Ichbintoll", "ichmagkekse", "Vegan4Life"};
+
+        for (int i = 0; i<venturerNames.length; i++){
+            em.persist(new Venturer(venturerNames[i], venturerFirstNames[i], venturerEmail[i], venturerPasswort[i]));
         }
 
         Query query = em.createNamedQuery("findAllChallenges");

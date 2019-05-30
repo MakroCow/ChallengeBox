@@ -17,11 +17,6 @@ public class Tag {
     @Column
     private String tagName;
 
-    /*@ManyToMany(
-            mappedBy = "tags",
-            fetch = FetchType.EAGER)
-    private List<Challenge> challenges;*/
-
     public int getId() {
         return id;
     }
