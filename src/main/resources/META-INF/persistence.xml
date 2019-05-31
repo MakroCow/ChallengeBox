@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="challengeBoxPU" transaction-type="JTA">
-        <jta-data-source>java:jboss/datasources/challengeBox</jta-data-source>
+       <!--<jta-data-source>java:jboss/datasources/challengeBox</jta-data-source>-->
 
         <!-- Enable caching globally. Set @Cacheable(false) to prevent caching of entities -->
         <!-- Use ENABLE_SELECTIVE to disable caching globally. Caching can the be enabled for each entity by setting @Cacheable(true) -->

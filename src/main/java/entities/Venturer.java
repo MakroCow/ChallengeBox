@@ -1,7 +1,9 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -36,24 +38,34 @@ public class Venturer {
     @Column
     private int mentalScore;
 
-    @OneToMany(mappedBy="id", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Task> tasks;
 
     public Venturer() {
         super();
+        this.tasks = new ArrayList<>();
     }
 
-    public Venturer(String firstName, String lastName, String email, String password){
+    public Venturer(String firstName, String lastName, String email, String password) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.tasks = new ArrayList<>();
     }
 
     public boolean checkPW(String pw) {
         //todo
         return true;
+    }
+
+    public void addTask(Task t) {
+        this.tasks.add(t);
+    }
+
+    public String toString() {
+        return "Venturer: " + this.lastName + this.firstName + " " + this.tasks.stream().map(t -> t.id).count();
     }
 
     // *  Getter & Setter  *//
