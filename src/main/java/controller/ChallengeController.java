@@ -48,14 +48,9 @@ public class ChallengeController {
     @Path("/")
     @POST
     @Transactional
-    @Consumes("application/x-www-form-urlencoded")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Challenge createChallenge(@FormParam("title") String title,
-                                     @FormParam("description") String description,
-                                     @FormParam("sportScore") int sportScore,
-                                     @FormParam("nutritionScore") int nutritionScore,
-                                     @FormParam("mentalScore") int mentalScore) {
-        return challengeService.createChallenge(title, description, sportScore, nutritionScore, mentalScore);
-
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Challenge createChallenge(Challenge challenge) {
+        return challengeService.createChallenge(challenge);
     }
 }

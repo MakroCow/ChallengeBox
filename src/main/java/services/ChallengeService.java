@@ -4,9 +4,11 @@ import entities.Challenge;
 import entities.Tag;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,9 +22,7 @@ public class ChallengeService {
     EntityManager em;
 
     public List<Challenge> getChallenges() {
-        System.out.println(em);
         Query query = em.createNamedQuery("findAllChallenges");
-        System.out.println(query);
         return query.getResultList();
     }
 
@@ -69,18 +69,20 @@ public class ChallengeService {
 
     public Challenge createChallenge(String title,
                                      String description,
+                                     List<Tag> tags,
                                      int sportScore,
                                      int nutritionScore,
                                      int mentalScore) {
         //TODO validierung der parameter
-        Challenge c = new Challenge();
-        c.setTitle(title);
-        c.setDescription(description);
-        c.setMentalPoints(mentalScore);
-        c.setNutritionPoints(nutritionScore);
-        c.setSportPoints(sportScore);
-        em.persist(c);
+        Challenge c = new Challenge(title, description, tags, sportScore, nutritionScore, mentalScore);
+        em.merge(c);
         return c;
     }
+
+    public Challenge createChallenge(Challenge challenge){
+        em.merge(challenge);
+        return challenge;
+    }
+
 
 }

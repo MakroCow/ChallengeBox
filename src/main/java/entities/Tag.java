@@ -1,7 +1,6 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -16,11 +15,6 @@ public class Tag {
 
     @Column
     private String tagName;
-
-    /*@ManyToMany(
-            mappedBy = "tags",
-            fetch = FetchType.EAGER)
-    private List<Challenge> challenges;*/
 
     public int getId() {
         return id;
