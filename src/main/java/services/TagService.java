@@ -4,6 +4,7 @@ import entities.Tag;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -32,11 +33,16 @@ public class TagService {
     public Tag findTagByName(String tagName) {
         Query query = em.createNamedQuery("findTagByTagName");
         query.setParameter("tagName", tagName);
-        // return query.getResultList(); // Hier kommt immer eine Liste raus, die dann erst ausgepackt werden muss. Wie ist der richtige Ansatz?
-        return (Tag) query.getSingleResult(); //Hier könnten auch mehrere Ergebnisse zurückkommen, sofern Datenbank nicht sauber ist und ich weiß nicht, wie ich das vernünftig abprüfen kann
+        Tag tag;
+        try {
+            tag = (Tag) query.getSingleResult();
+        } catch (NoResultException e) {
+            tag = null;
+        }
+        return tag;
     }
 
-    public Tag createTag(String tagName){
+    public Tag createTag(String tagName) {
         return new Tag();
     }
 

@@ -32,10 +32,6 @@ public class Challenge {
     )
     private List<Tag> tags;
 
-    //@Column TODO
-    //private ... picture;org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags:
-
-    //Challenge Score Points
     @Column
     private int sportPoints;
 
@@ -44,6 +40,24 @@ public class Challenge {
 
     @Column
     private int mentalPoints;
+
+    public Challenge(){
+        super();
+    }
+
+    public Challenge(String title, String description, List<Tag> tags, int sportPoints, int nutritionPoints, int mentalPoints) {
+        this.title = title;
+        this.description = description;
+        this.tags = tags;
+        this.sportPoints = sportPoints;
+        this.nutritionPoints = nutritionPoints;
+        this.mentalPoints = mentalPoints;
+    }
+
+    //@Column TODO
+    //private ... picture;
+
+    //Challenge Score Points
 
     public String getTitle() {
         return title;
