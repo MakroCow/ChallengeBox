@@ -2,6 +2,7 @@ package services;
 
 import entities.Challenge;
 import entities.Task;
+import entities.Venturer;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
@@ -19,41 +20,39 @@ public class TaskService {
     @PersistenceContext
     EntityManager em;
 
-    public Task getTasks(int id) {
+    public Task getTask(int id) {
         return em.find(Task.class, id);
     }
 
-
-    //TODO Auch den User in den Task einspeichern
-    public Task createTask(int challengeId
-                           //@FormParam("user_id")int userId
+    public Task createTask(Challenge challenge, int venturer_id
     ) {
-        Task t = new Task();
-        t.accepted = new Date();
-        // t.user = ...
+        Venturer venturer = em.find(Venturer.class, venturer_id);
+        Task t = new Task(challenge, venturer, new Date(), null, null, null);
+        em.persist(t);
         return t;
     }
 
-
-    //TODO umschreiben, sodass nur tasks eines users zurückkommen.
-    // alle unten aufgeführten Endpoints sollten nur die Tasks eines Users ausgeben. Es gibt aber noch keine Usertabelle, daher später...
-    public List<Challenge> getTasks() {
+    public List<Challenge> getTasks(int venturer_id) {
         Query query = em.createNamedQuery("findAllTasks");
+        query.setParameter("venturer_id", venturer_id);
         return query.getResultList();
     }
 
-    public List<Challenge> getDoneTasks() {
+    public List<Challenge> getDoneTasks(int venturer_id) {
         Query query = em.createNamedQuery("findDoneTasks");
+        query.setParameter("venturer_id", venturer_id);
         return query.getResultList();
     }
 
-    public List<Challenge> getOpenTasks() {
+    public List<Challenge> getOpenTasks(int venturer_id) {
         Query query = em.createNamedQuery("findOpenTasks");
+        query.setParameter("venturer_id", venturer_id);
         return query.getResultList();
     }
 
-    public List<Challenge> getTerminatedTasks() {
+    public List<Challenge> getTerminatedTasks(int venturer_id) {
         Query query = em.createNamedQuery("findTerminatedTasks");
+        query.setParameter("venturer_id", venturer_id);
         return query.getResultList();
     }
 }

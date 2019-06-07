@@ -19,46 +19,44 @@ public class TaskController {
     @Path("/id/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Task getTaskByID(@PathParam("id") int id){
-        return taskService.getTasks(id);
+    public Task getTaskByID(@PathParam("id") int id) {
+        return taskService.getTask(id);
     }
 
     @Path("/")
     @POST
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public Task createTask(@FormParam("challenge_id") int challengeId
-                           //@FormParam("user_id")int userId
-    ) {
-        return taskService.createTask(challengeId);
+    public Task createTask(Challenge challenge, int venturer_id) {
+        return taskService.createTask(challenge, venturer_id);
     }
 
-    @Path("/all")
+    @Path("/all/{venturer_id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Challenge> getTasks() {
-        return taskService.getTasks();
+    public List<Challenge> getTasks(@PathParam("venturer_id") int venturer_id) {
+        return taskService.getTasks(venturer_id);
     }
 
-    @Path("/allDone")
+    @Path("/allDone/{venturer_id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Challenge> getDoneTasks() {
-        return taskService.getDoneTasks();
+    public List<Challenge> getDoneTasks(@PathParam("venturer_id") int venturer_id) {
+        return taskService.getDoneTasks(venturer_id);
     }
 
-    @Path("/allFailed")
+    @Path("/allFailed/{venturer_id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Challenge> getOpenTasks() {
-      return taskService.getOpenTasks();
+    public List<Challenge> getOpenTasks(@PathParam("venturer_id") int venturer_id) {
+        return taskService.getOpenTasks(venturer_id);
     }
 
-    @Path("/allTerminated")
+    @Path("/allTerminated/{venturer_id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Challenge> getTerminatedTasks() {
-        return taskService.getTerminatedTasks();
+    public List<Challenge> getTerminatedTasks(@PathParam("venturer_id") int venturer_id) {
+        return taskService.getTerminatedTasks(venturer_id);
     }
 
 }

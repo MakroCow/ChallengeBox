@@ -6,10 +6,10 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "findAllTasks", query = "SELECT t FROM Task t"),
-        @NamedQuery(name = "findDoneTasks", query = "SELECT t FROM Task t WHERE t.done is not null"),
-        @NamedQuery(name = "findTerminatedTasks", query = "SELECT t FROM Task t WHERE t.done is not null or t.failed is not null"),
-        @NamedQuery(name = "findOpenTasks", query = "SELECT t FROM Task t WHERE t.done is null and t.failed is null")}
+        @NamedQuery(name = "findAllTasks", query = "SELECT t FROM Task t WHERE t.venturer.id = :venturer_id"),
+        @NamedQuery(name = "findDoneTasks", query = "SELECT t FROM Task t WHERE (t.done is not null) AND t.venturer.id = :venturer_id"),
+        @NamedQuery(name = "findTerminatedTasks", query = "SELECT t FROM Task t WHERE t.done is not null or t.failed is not null AND t.venturer.id = :venturer_id"),
+        @NamedQuery(name = "findOpenTasks", query = "SELECT t FROM Task t WHERE t.done is null and t.failed is null AND t.venturer.id = :venturer_id")}
 )
 public class Task {
 
@@ -29,19 +29,23 @@ public class Task {
     @Column
     public Date failed;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     public Challenge challenge;
 
-    public Task(){
+    @OneToOne
+    public Venturer venturer;
+
+    public Task() {
         super();
     }
 
-    public Task(Date accepted, Date done, Date beaten, Date failed, Challenge challenge) {
+    public Task(Challenge challenge, Venturer venturer, Date accepted, Date done, Date beaten, Date failed) {
         this.accepted = accepted;
         this.done = done;
         this.beaten = beaten;
         this.failed = failed;
         this.challenge = challenge;
+        this.venturer = venturer;
     }
 
     public int getId() {
@@ -90,5 +94,13 @@ public class Task {
 
     public void setChallenge(Challenge challenge) {
         this.challenge = challenge;
+    }
+
+    public Venturer getVenturer() {
+        return venturer;
+    }
+
+    public void setVenturer(Venturer venturer) {
+        this.venturer = venturer;
     }
 }

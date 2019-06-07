@@ -92,10 +92,8 @@ public class HelloWorldController {
         List<Challenge> challenges = query1.getResultList();
 
         for (int i = 0; i < venturers.size(); i++) {
-            Task t = new Task(new Date(), null, null, null, challenges.get(i));
+            Task t = new Task(challenges.get(i), venturers.get(i), new Date(), null, null, null);
             em.persist(t);
-            venturers.get(i).addTask(t);
-            em.merge(venturers.get(i));
         }
         return challenges;
     }
