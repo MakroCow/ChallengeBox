@@ -5,6 +5,7 @@ import entities.Tag;
 import entities.Task;
 import entities.Venturer;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import security.JWTAuthed;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.StreamingOutput;
 import java.util.*;
 
 @Path("/helloworld")
@@ -22,6 +24,14 @@ public class HelloWorldController {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Path("/test")
+    @GET
+    @JWTAuthed
+    public String getHello() {
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXIch bin da");
+        return "I'm loged in";
+    }
 
     @Path("/1")
     @GET

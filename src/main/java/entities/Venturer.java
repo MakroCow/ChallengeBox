@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class Venturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
+
     @Column
     private String firstName;
 
@@ -23,7 +25,7 @@ public class Venturer {
     @Column(unique = true)
     private String email;
 
-    @Column
+    @Transient
     private String password;
 
     @Column
@@ -40,7 +42,7 @@ public class Venturer {
 
     public Venturer() {
         super();
-        this.tasks = new HashSet<>() {
+        this.tasks = new HashSet<Task>() {
         };
     }
 
