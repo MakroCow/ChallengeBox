@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ws.rs.QueryParam;
 import java.util.List;
+import java.util.Set;
 
 @RequestScoped
 public class VenturerService {
@@ -25,7 +26,7 @@ public class VenturerService {
         return query.getResultList();
     }
 
-    public List<Task> getTasks(int id){
+    public Set<Task> getTasks(int id){
         Venturer v = em.find(Venturer.class, id);
         return v.getTasks();
     }

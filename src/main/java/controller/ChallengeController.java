@@ -1,12 +1,12 @@
 package controller;
 
 import entities.Challenge;
+import entities.Tag;
 import services.ChallengeService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/challenge")
@@ -17,7 +17,7 @@ public class ChallengeController {
 
     @Path("/all")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
     public List<Challenge> getChallenges() {
         return challengeService.getChallenges();
     }
@@ -25,24 +25,27 @@ public class ChallengeController {
     @Path("/id/{id}")
     @GET
     @Transactional
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
     public Challenge getChallengesById(@PathParam("id") int id) {
         return challengeService.getChallengesById(id);
     }
 
     @Path("/tag")
     @POST
+    @Transactional
+    @Consumes("application/json")
     @Produces({"application/json"})
-    public List<Challenge> getChallengsByTags(@FormParam("tags") List<String> tagNames) {
+    public List<Challenge> getChallengsByTags(List<Tag> tagNames) {
         return challengeService.getChallengesByTags(tagNames);
     }
 
     @Path("/daily")
-    @GET
+    @POST
     @Transactional
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Challenge> getDaily() {
-        return challengeService.getDaily();
+    @Consumes("application/json")
+    @Produces("application/json")
+    public List<Challenge> getDaily(List<Tag> tags) {
+        return challengeService.getDaily(tags);
     }
 
     @Path("/")

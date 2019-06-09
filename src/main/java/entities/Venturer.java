@@ -1,17 +1,14 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @NamedQueries({
         @NamedQuery(name = "findAllVenturers", query = "SELECT v FROM Venturer v"),
         @NamedQuery(name = "findVenturerByName", query = "SELECT v FROM Venturer v WHERE v.lastName = :lastname"),
         @NamedQuery(name = "findVenturerByEmail", query = "SELECT v FROM Venturer v WHERE v.email = :email"),
-}
-)
+})
 public class Venturer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,12 +35,13 @@ public class Venturer {
     @Column
     private int mentalScore;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Task> tasks;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Set<Task> tasks;
 
     public Venturer() {
         super();
-        this.tasks = new ArrayList<>();
+        this.tasks = new HashSet<>() {
+        };
     }
 
     public Venturer(String firstName, String lastName, String email, String password) {
@@ -52,7 +50,7 @@ public class Venturer {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.tasks = new ArrayList<>();
+        this.tasks = new HashSet<>();
     }
 
     public boolean checkPW(String pw) {
@@ -138,11 +136,11 @@ public class Venturer {
         this.mentalScore = mentalScore;
     }
 
-    public List<Task> getTasks() {
+    public Set<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void Set(Set<Task> tasks) {
         this.tasks = tasks;
     }
 

@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Set;
 
 @Path("/venturer")
 public class VenturerController {
@@ -40,7 +41,7 @@ public class VenturerController {
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Task> getVenturersTasks(@PathParam("id") int id ) {
+    public Set<Task> getVenturersTasks(@PathParam("id") int id ) {
         return ventService.getTasks(id);
     }
 
