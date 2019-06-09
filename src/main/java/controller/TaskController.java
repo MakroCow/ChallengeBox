@@ -29,8 +29,8 @@ public class TaskController {
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Task createTask(Challenge challenge, int venturer_id) {
-        return taskService.createTask(challenge, venturer_id);
+    public Task createTask(Task task) {
+        return taskService.createTask(task);
     }
 
     @Path("/all/{venturer_id}")

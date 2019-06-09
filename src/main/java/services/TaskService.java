@@ -24,12 +24,12 @@ public class TaskService {
         return em.find(Task.class, id);
     }
 
-    public Task createTask(Challenge challenge, int venturer_id
-    ) {
-        Venturer venturer = em.find(Venturer.class, venturer_id);
-        Task t = new Task(challenge, venturer, new Date(), null, null, null);
-        em.persist(t);
-        return t;
+    public Task createTask(Task task) {
+        Venturer venturer = em.find(Venturer.class, task.venturer.id);
+        task.accepted = new Date();
+        task.venturer = venturer;
+        em.persist(task);
+        return task;
     }
 
     public List<Challenge> getTasks(int venturer_id) {
