@@ -15,10 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Path("/helloworld")
 public class HelloWorldController {
@@ -54,7 +51,7 @@ public class HelloWorldController {
         String[] challengetitels = {"Laufen", "Gehen", "Sprechen", "Schreien", "Kochen", "Kennenlernen"};
         String[] challgedescriptions = {"Gehe heute 10 Minuten länger laufen, als letztesmal", "Gehe nach dem Abendessen noch eine Runde und versuche dabei ein Tier zu sichten", "Sprich deinen Schwarm auf seine Frisur an - Sei es positiv oder negativ", "Kletter auf den höchsten Punkt im 2km Umkreis und schreie einen Tarzan Schrei", "Backe heute einen Kuchen mit mind. 2 grünen Zutaten", "Frag jemanden anch seiner Handynummer"};
 
-        String[] tags = {"Kürzer als 10 min", "Benötigt Küche", "Dauer bis 1h", "Benötigt Computer", "Nicht krank"};
+        String[] tags = {"Kürzer als 10 min", "Essen (inkl. Küche)", "Outdoor","Indoor", "Sport", "Geistig anspruchsvoll"};
         List<Tag> tagArray = new ArrayList<>();
 
         for (String k : tags) {
@@ -65,14 +62,13 @@ public class HelloWorldController {
         }
 
         for (int i = 0; i < challengetitels.length; i++) {
-            Challenge c = new Challenge();
-            c.setTitle(challengetitels[i]);
-            c.setDescription(challgedescriptions[i]);
-            c.setTags(tagArray);
-            c.setSportPoints(0);
-            c.setNutritionPoints(0);
-            c.setMentalPoints(0);
-            System.out.println(c);
+            Challenge c = new Challenge(
+                    challengetitels[i],
+                    challgedescriptions[i],
+                    tagArray,
+                    new Random().nextInt(100),
+                    new Random().nextInt(100),
+                    new Random().nextInt(100));
             em.persist(c);
         }
 

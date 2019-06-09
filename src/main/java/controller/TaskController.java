@@ -2,6 +2,7 @@ package controller;
 
 import entities.Challenge;
 import entities.Task;
+import entities.Venturer;
 import services.TaskService;
 
 import javax.inject.Inject;
@@ -26,6 +27,7 @@ public class TaskController {
     @Path("/")
     @POST
     @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Task createTask(Challenge challenge, int venturer_id) {
         return taskService.createTask(challenge, venturer_id);
