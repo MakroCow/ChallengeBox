@@ -3,6 +3,7 @@ package controller;
 import entities.Challenge;
 import entities.Task;
 import entities.Venturer;
+import security.JWTAuthed;
 import services.TaskService;
 
 import javax.inject.Inject;
@@ -11,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@JWTAuthed
 @Path("/task")
 public class TaskController {
 
@@ -19,6 +21,7 @@ public class TaskController {
 
     @Path("/id/{id}")
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Task getTaskByID(@PathParam("id") int id) {
         return taskService.getTask(id);
@@ -35,6 +38,7 @@ public class TaskController {
 
     @Path("/all/{venturer_id}")
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Challenge> getTasks(@PathParam("venturer_id") int venturer_id) {
         return taskService.getTasks(venturer_id);
@@ -42,6 +46,7 @@ public class TaskController {
 
     @Path("/allDone/{venturer_id}")
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Challenge> getDoneTasks(@PathParam("venturer_id") int venturer_id) {
         return taskService.getDoneTasks(venturer_id);
@@ -49,6 +54,7 @@ public class TaskController {
 
     @Path("/allFailed/{venturer_id}")
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Challenge> getOpenTasks(@PathParam("venturer_id") int venturer_id) {
         return taskService.getOpenTasks(venturer_id);
@@ -56,6 +62,7 @@ public class TaskController {
 
     @Path("/allTerminated/{venturer_id}")
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Challenge> getTerminatedTasks(@PathParam("venturer_id") int venturer_id) {
         return taskService.getTerminatedTasks(venturer_id);

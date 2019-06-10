@@ -2,6 +2,7 @@ package controller;
 
 import entities.Challenge;
 import entities.Tag;
+import security.JWTAuthed;
 import services.ChallengeService;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import java.util.List;
 
+@JWTAuthed
 @Path("/challenge")
 public class ChallengeController {
 

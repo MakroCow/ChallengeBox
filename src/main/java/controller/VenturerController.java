@@ -4,6 +4,7 @@ import entities.Challenge;
 import entities.Tag;
 import entities.Task;
 import entities.Venturer;
+import security.JWTAuthed;
 import services.TagService;
 import services.VenturerService;
 
@@ -15,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Set;
 
+@JWTAuthed
 @Path("/venturer")
 public class VenturerController {
 
@@ -24,6 +26,7 @@ public class VenturerController {
     @Path("/all")
     @GET
     @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Venturer> findAllVenturer() {
         return ventService.getVenturers();
