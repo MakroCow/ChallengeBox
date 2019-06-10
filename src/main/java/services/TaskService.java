@@ -32,27 +32,33 @@ public class TaskService {
         return task;
     }
 
-    public List<Challenge> getTasks(int venturer_id) {
+    public List<Task> getTasks(int venturer_id) {
         Query query = em.createNamedQuery("findAllTasks");
         query.setParameter("venturer_id", venturer_id);
         return query.getResultList();
     }
 
-    public List<Challenge> getDoneTasks(int venturer_id) {
-        Query query = em.createNamedQuery("findDoneTasks");
-        query.setParameter("venturer_id", venturer_id);
-        return query.getResultList();
-    }
-
-    public List<Challenge> getOpenTasks(int venturer_id) {
+    public List<Task> getOpenTasks(int venturer_id) {
         Query query = em.createNamedQuery("findOpenTasks");
         query.setParameter("venturer_id", venturer_id);
         return query.getResultList();
     }
 
-    public List<Challenge> getTerminatedTasks(int venturer_id) {
-        Query query = em.createNamedQuery("findTerminatedTasks");
-        query.setParameter("venturer_id", venturer_id);
-        return query.getResultList();
+    public Task setTaskDone(int task_id) {
+        Task t = em.find(Task.class, task_id);
+        t.done = new Date();
+        // Add Task Points to Venturer Score
+        t.venturer.setMentalScore(t.getVenturer().getMentalScore() + t.getChallenge().getMentalPoints());
+        t.venturer.setNutritionScore(t.getVenturer().getNutritionScore() + t.getChallenge().getNutritionPoints());
+        t.venturer.setSportScore(t.getVenturer().getSportScore() + t.getChallenge().getSportPoints());
+        em.merge(t);
+        return t;
+    }
+
+    public Task setTaskFailed(int task_id) {
+        Task t = em.find(Task.class, task_id);
+        t.failed = new Date();
+        em.merge(t);
+        return t;
     }
 }

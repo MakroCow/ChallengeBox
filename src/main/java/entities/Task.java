@@ -2,7 +2,6 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -24,9 +23,6 @@ public class Task {
     public Date done;
 
     @Column
-    public Date beaten;
-
-    @Column
     public Date failed;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -42,7 +38,6 @@ public class Task {
     public Task(Challenge challenge, Venturer venturer, Date accepted, Date done, Date beaten, Date failed) {
         this.accepted = accepted;
         this.done = done;
-        this.beaten = beaten;
         this.failed = failed;
         this.challenge = challenge;
         this.venturer = venturer;
@@ -70,14 +65,6 @@ public class Task {
 
     public void setDone(Date done) {
         this.done = done;
-    }
-
-    public Date getBeaten() {
-        return beaten;
-    }
-
-    public void setBeaten(Date beaten) {
-        this.beaten = beaten;
     }
 
     public Date getFailed() {

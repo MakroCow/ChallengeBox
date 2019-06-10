@@ -26,7 +26,6 @@ public class VenturerController {
     @Path("/all")
     @GET
     @Transactional
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Venturer> findAllVenturer() {
         return ventService.getVenturers();
