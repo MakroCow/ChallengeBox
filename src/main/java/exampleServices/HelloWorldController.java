@@ -85,7 +85,7 @@ public class HelloWorldController {
         String[] venturerNames = {"Hans", "Brunhilde", "Maxi"};
         String[] venturerFirstNames = {"Wurst", "Blabla", "Musterfrau"};
         String[] venturerEmail = {"hans@wurst.de", "b.blabla@hallo.de", "m.muster@frau.de"};
-        String[] venturerPasswort = {"Ichbintoll", "ichmagkekse", "Vegan4Life"};
+        String[] venturerPasswort = {"secret", "ichmagkekse", "Vegan4Life"};
 
         for (int i = 0; i < venturerNames.length; i++) {
             em.persist(new Venturer(venturerNames[i], venturerFirstNames[i], venturerEmail[i], venturerPasswort[i]));

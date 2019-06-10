@@ -15,7 +15,6 @@ public class Venturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
-
     @Column
     private String firstName;
 

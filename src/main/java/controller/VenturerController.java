@@ -32,11 +32,20 @@ public class VenturerController {
         return ventService.getVenturers();
     }
 
+    @Path("/{email}")
+    @GET
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Venturer findVenturerByEMail(@PathParam("email") String email) {
+        return ventService.getVenturer(email);
+    }
+
     @Path("/{id}")
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public Venturer findAllVenturer(@PathParam("id") int id) {
+    public Venturer findVenturerById(@PathParam("id") int id) {
         return ventService.getVenturer(id);
     }
 

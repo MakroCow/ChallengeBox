@@ -23,7 +23,7 @@ public class LoginController {
     @Consumes("application/json")
     public Response login(User login) {
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXJo Das klappt");
-        if (login.getUsername().equals("demo") && login.getPassword().equals("secret")) {
+        if (login.getUsername().equals("hans@wurst.de") && login.getPassword().equals("secret")) {
             System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYJo Das klappt");
             return Response.status(200).entity(jwtService.generateJWTToken(login.getUsername())).build();
         } else {
