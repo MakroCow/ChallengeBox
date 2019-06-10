@@ -52,8 +52,16 @@ public class VenturerController {
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<Task> getVenturersTasks(@PathParam("id") int id ) {
+    public Set<Task> getVenturersTasks(@PathParam("id") int id) {
         return ventService.getTasks(id);
+    }
+
+    @Path("/otherFellows/{vent_id}")
+    @GET
+    @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Venturer> getOtherVenturers(@PathParam("vent_id") int venturer_id) {
+        return ventService.otherFellows(venturer_id);
     }
 
 }

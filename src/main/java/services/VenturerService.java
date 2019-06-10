@@ -44,5 +44,10 @@ public class VenturerService {
         return v.getTasks();
     }
 
-
+    public List<Venturer> otherFellows(int venturer_id){
+        Venturer this_venturer = em.find(Venturer.class, venturer_id);
+        List<Venturer> otherVenturers = this.getVenturers();
+        otherVenturers.remove(this_venturer);
+        return otherVenturers;
+    }
 }
