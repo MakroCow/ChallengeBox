@@ -3,25 +3,25 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
-/**
- * Code von https://github.com/GEDOPLAN/jwt-angular-javaee
- */
 @ApplicationScoped
 public class JWTService {
+
+    private static String secretkey = "E0BDFAEF74DC0DB06E3174487EC0CC592A764577FDA1D082F4ABEFA95E2EDC17E0BDFAEF74DC0DB06E3174487EC0CC592A764577FDA1D082F4ABEFA95E2EDC17";
 
     private List<String> validJWTTokens = new ArrayList();
 
     public String generateJWTToken(String mail) {
         // ...read user information from database...
+
         String token = Jwts.builder()
                 .setSubject(mail)
                 .claim("groups", new String[] { "user" })
                 .claim("mail", mail)
-                //TODO (s:)ecret auslagern
-                .signWith(SignatureAlgorithm.HS512, "JWT-Key")
+                .signWith(SignatureAlgorithm.HS512, secretkey)
                 .compact();
 
         this.validJWTTokens.add(token);

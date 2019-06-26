@@ -1,5 +1,7 @@
 package entities;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.*;
@@ -24,7 +26,7 @@ public class Venturer {
     @Column(unique = true)
     private String email;
 
-    @Transient
+    @Column
     private String password;
 
     @Column
@@ -36,26 +38,29 @@ public class Venturer {
     @Column
     private int mentalScore;
 
+    @Transient
+    private String token;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Task> tasks;
 
     public Venturer() {
-        super();
         this.tasks = new HashSet<Task>() {
         };
     }
 
     public Venturer(String firstName, String lastName, String email, String password) {
-        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.tasks = new HashSet<>();
     }
 
-    public boolean checkPW(String pw) {
-        //todo
+    public boolean checkPW(String outerPassword) {
+        System.out.println("outer PW" + outerPassword);
+        System.out.println("PW" + this.password);
+        BCrypt.checkpw(outerPassword, this.password);
         return true;
     }
 
@@ -106,7 +111,7 @@ public class Venturer {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public int getSportScore() {
@@ -143,6 +148,14 @@ public class Venturer {
 
     public void Set(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }

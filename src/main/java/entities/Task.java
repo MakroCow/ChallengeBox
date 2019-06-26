@@ -6,9 +6,17 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "findAllTasks", query = "SELECT t FROM Task t WHERE t.venturer.id = :venturer_id"),
-        @NamedQuery(name = "findDoneTasks", query = "SELECT t FROM Task t WHERE (t.done is not null) AND t.venturer.id = :venturer_id"),
-        @NamedQuery(name = "findTerminatedTasks", query = "SELECT t FROM Task t WHERE t.done is not null or t.failed is not null AND t.venturer.id = :venturer_id"),
-        @NamedQuery(name = "findOpenTasks", query = "SELECT t FROM Task t WHERE t.done is null and t.failed is null AND t.venturer.id = :venturer_id")}
+        @NamedQuery(
+                name = "findDoneTasks",
+                query = "SELECT t FROM Task t WHERE (t.done is not null) AND t.venturer.id = :venturer_id"),
+        @NamedQuery(
+                name = "findTerminatedTasks",
+                query = "SELECT t FROM Task t WHERE t.done is not null or t.failed is not null AND t.venturer.id = " +
+                        ":venturer_id"),
+        @NamedQuery(
+                name = "findOpenTasks",
+                query = "SELECT t FROM Task t WHERE t.done is null and t.failed is null AND t.venturer.id = " +
+                        ":venturer_id")}
 )
 public class Task {
 

@@ -31,7 +31,7 @@ public class VenturerService {
             System.out.println(e);
         }
         query.setParameter("email", encodedMail);
-        return (Venturer)query.getResultList().get(0);
+        return (Venturer)query.getSingleResult();
     }
 
     public List<Venturer> getVenturers() {
@@ -50,4 +50,9 @@ public class VenturerService {
         otherVenturers.remove(this_venturer);
         return otherVenturers;
     }
+
+    public void register(Venturer vent){
+        em.persist(vent);
+    }
+
 }

@@ -16,13 +16,14 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Set;
 
-@JWTAuthed
+
 @Path("/venturer")
 public class VenturerController {
 
     @Inject
     VenturerService ventService;
 
+    @JWTAuthed
     @Path("/all")
     @GET
     @Transactional
@@ -31,6 +32,7 @@ public class VenturerController {
         return ventService.getVenturers();
     }
 
+    @JWTAuthed
     @Path("/{email}")
     @GET
     @Transactional
@@ -40,6 +42,7 @@ public class VenturerController {
         return ventService.getVenturer(email);
     }
 
+    @JWTAuthed
     @Path("/{id}")
     @GET
     @Transactional
@@ -48,6 +51,7 @@ public class VenturerController {
         return ventService.getVenturer(id);
     }
 
+    @JWTAuthed
     @Path("/{id}/tasks")
     @GET
     @Transactional
@@ -56,12 +60,21 @@ public class VenturerController {
         return ventService.getTasks(id);
     }
 
+    @JWTAuthed
     @Path("/otherFellows/{vent_id}")
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
     public List<Venturer> getOtherVenturers(@PathParam("vent_id") int venturer_id) {
         return ventService.otherFellows(venturer_id);
+    }
+
+    @Path("/register")
+    @POST
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void registerVenturer(Venturer vent) {
+        ventService.register(vent);
     }
 
 }
