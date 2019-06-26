@@ -65,8 +65,8 @@ public class Venturer {
     public boolean checkPW(String outerPassword) {
         System.out.println("outer PW" + outerPassword);
         System.out.println("PW" + this.password);
-        BCrypt.checkpw(outerPassword, this.password);
-        return true;
+        System.out.println(BCrypt.checkpw(outerPassword, this.password));
+        return BCrypt.checkpw(outerPassword, this.password);
     }
 
     public void addTask(Task t) {

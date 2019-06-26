@@ -2,6 +2,7 @@ package controller;
 
 import entities.User;
 import entities.Venturer;
+import org.eclipse.persistence.sessions.Login;
 import security.JWTAuthed;
 import services.JWTService;
 import services.LoginService;
@@ -24,6 +25,9 @@ public class LoginController {
     @Inject
     JWTService jwtService;
 
+    @Inject
+    LoginService loginService;
+
 
     /**
      *
@@ -36,16 +40,7 @@ public class LoginController {
     @POST
     @Consumes("application/json")
     public Response login(User login) {
-        if (login.getUsername().equals("hans@wurst.de") && login.getPassword().equals("secret")) {
-            return Response.status(200).entity(jwtService.generateJWTToken(login.getUsername())).build();
-        } else {
-            if (login.getUsername().equals("m.muster@frau.de") && login.getPassword().equals("musterpasswort")) {
-                return Response.status(200).entity(jwtService.generateJWTToken(login.getUsername())).build();
-            } else {
-
-                return Response.status(Response.Status.UNAUTHORIZED).build();
-            }
-        }
+        return loginService.login(login);
     }
 
     /**
@@ -56,7 +51,7 @@ public class LoginController {
     @GET
     @JWTAuthed
     public void authenticate(){
-        System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
+
     }
 
 }
