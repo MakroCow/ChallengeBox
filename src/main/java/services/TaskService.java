@@ -1,6 +1,5 @@
 package services;
 
-import entities.Challenge;
 import entities.Task;
 import entities.Venturer;
 

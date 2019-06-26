@@ -29,8 +29,7 @@ public class HelloWorldController {
     @GET
     @JWTAuthed
     public String getHello() {
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXIch bin da");
-        return "I'm loged in";
+        return "I'm logged in";
     }
 
     @Path("/1")
@@ -88,7 +87,8 @@ public class HelloWorldController {
         String[] venturerPasswort = {"secret", "ichmagkekse", "Vegan4Life"};
 
         for (int i = 0; i < venturerNames.length; i++) {
-            em.persist(new Venturer(venturerNames[i], venturerFirstNames[i], venturerEmail[i], venturerPasswort[i]));
+            em.persist(new Venturer(venturerNames[i], venturerFirstNames[i], venturerEmail[i], venturerPasswort[i], new Random().nextInt(100),
+                    new Random().nextInt(100), new Random().nextInt(100)));
         }
 
         Query query = em.createNamedQuery("findAllVenturers");

@@ -62,10 +62,20 @@ public class Venturer {
         this.tasks = new HashSet<>();
     }
 
+    //Only for Example Endpoint in Hello World. Do not use.
+    @Deprecated
+    public Venturer(String firstName, String lastName, String email, String password, int nutritionScore, int sportScore, int mentalScore) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.tasks = new HashSet<>();
+        this.nutritionScore = nutritionScore;
+        this.sportScore = sportScore;
+        this.mentalScore = mentalScore;
+    }
+
     public boolean checkPW(String outerPassword) {
-        System.out.println("outer PW" + outerPassword);
-        System.out.println("PW" + this.password);
-        System.out.println(BCrypt.checkpw(outerPassword, this.password));
         return BCrypt.checkpw(outerPassword, this.password);
     }
 

@@ -1,14 +1,11 @@
 package controller;
 
 import entities.User;
-import entities.Venturer;
-import org.eclipse.persistence.sessions.Login;
 import security.JWTAuthed;
 import services.JWTService;
 import services.LoginService;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,8 +19,6 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.TEXT_PLAIN)
 public class LoginController {
 
-    @Inject
-    JWTService jwtService;
 
     @Inject
     LoginService loginService;

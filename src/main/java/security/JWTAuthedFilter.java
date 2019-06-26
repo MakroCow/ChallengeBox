@@ -26,10 +26,8 @@ public class JWTAuthedFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String token = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-
         try {
             jwtService.valid(token.split(" ")[1]);
-
         } catch (Exception e) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
         }
