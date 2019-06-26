@@ -5,6 +5,10 @@ import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * CORS FIlter um Zugriff vom Frontend (läuft Lokal auf port 8100) zu gewähren
+ */
+
 @Provider
 public class CORSFilter implements ContainerResponseFilter {
     @Override

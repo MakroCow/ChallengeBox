@@ -10,12 +10,21 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import java.util.List;
 
+/**
+ * Controller der die REST APIs zum abfragen und anlegen von Challenges implemntiert
+ */
+
 @JWTAuthed
 @Path("/challenge")
 public class ChallengeController {
 
     @Inject
     ChallengeService challengeService;
+
+    /**
+     *
+     * @return alle Challenges
+     */
 
     @Path("/all")
     @GET
@@ -24,6 +33,12 @@ public class ChallengeController {
         return challengeService.getChallenges();
     }
 
+    /**
+     *
+     * @param id
+     * @return Challenge mit der id
+     */
+
     @Path("/id/{id}")
     @GET
     @Transactional
@@ -31,6 +46,12 @@ public class ChallengeController {
     public Challenge getChallengesById(@PathParam("id") int id) {
         return challengeService.getChallengesById(id);
     }
+
+    /**
+     *
+     * @param tagNames
+     * @return Challenges mit diesem tag
+     */
 
     @Path("/tag")
     @POST
@@ -41,6 +62,12 @@ public class ChallengeController {
         return challengeService.getChallengesByTags(tagNames);
     }
 
+    /**
+     *
+     * @param tags
+     * @return drei Challenges passend zum Tag für die tägliche Herausforderung
+     */
+
     @Path("/daily")
     @POST
     @Transactional
@@ -50,6 +77,11 @@ public class ChallengeController {
         return challengeService.getDaily(tags);
     }
 
+    /**
+     *
+     * @param challenge
+     * @return angelegte Challenge
+     */
     @Path("/")
     @POST
     @Transactional
