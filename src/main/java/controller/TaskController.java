@@ -12,6 +12,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * Controller der die REST APIs zum abfragen und anlegen von Tasks implemntiert
+ */
 @JWTAuthed
 @Path("/task")
 public class TaskController {
@@ -19,6 +22,11 @@ public class TaskController {
     @Inject
     TaskService taskService;
 
+    /**
+     *
+     * @param id
+     * @return Task mit der id
+     */
     @Path("/id/{id}")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
@@ -27,6 +35,11 @@ public class TaskController {
         return taskService.getTask(id);
     }
 
+    /**
+     *
+     * @param task
+     * @return angelegte Task
+     */
     @Path("/")
     @POST
     @Transactional
@@ -36,6 +49,11 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
+    /**
+     *
+     * @param venturer_id
+     * @return alle Tasks eines Users
+     */
     @Path("/all/{venturer_id}")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
@@ -43,6 +61,12 @@ public class TaskController {
     public List<Task> getTasks(@PathParam("venturer_id") int venturer_id) {
         return taskService.getTasks(venturer_id);
     }
+
+    /**
+     *
+     * @param venturer_id
+     * @return alle offenen Tasks eines Users
+     */
 
     @Path("/allFailed/{venturer_id}")
     @GET
@@ -52,6 +76,11 @@ public class TaskController {
     }
 
 
+    /**
+     * setzt Task auf done
+     * @param task_id
+     * @return die abgeschlossene Task
+     */
     @Path("/setDone/{task_id}")
     @GET
     @Transactional
@@ -60,6 +89,11 @@ public class TaskController {
         return taskService.setTaskDone(task_id);
     }
 
+    /**
+     * setzt Task auf failed
+     * @param task_id
+     * @return die fehlgeschlagene Task
+     */
     @Path("/setFailed/{task_id}")
     @GET
     @Transactional

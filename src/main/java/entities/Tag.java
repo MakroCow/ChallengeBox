@@ -3,7 +3,13 @@ package entities;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Datenobjekt Tag
+ */
 @Entity
+/**
+ * benötigte querys für die Services
+ */
 @NamedQueries({
         @NamedQuery(name = "findAllTags", query = "SELECT t FROM Tag t"),
         @NamedQuery(name = "findTagByTagName", query = "SELECT t FROM Tag t WHERE t.tagName = :tagName")}

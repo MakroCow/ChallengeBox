@@ -1,15 +1,11 @@
 package controller;
 
-import entities.Challenge;
-import entities.Tag;
 import entities.Task;
 import entities.Venturer;
 import security.JWTAuthed;
-import services.TagService;
 import services.VenturerService;
 
 import javax.inject.Inject;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,12 +13,19 @@ import java.util.List;
 import java.util.Set;
 
 
+/**
+ * Controller der die REST APIs zum abfragen und anlegen von Venturern implementiert
+ */
 @Path("/venturer")
 public class VenturerController {
 
     @Inject
     VenturerService ventService;
 
+    /**
+     *
+     * @return alle Venturer
+     */
     @JWTAuthed
     @Path("/all")
     @GET
@@ -33,6 +36,11 @@ public class VenturerController {
     }
 
     @JWTAuthed
+    /**
+     *
+     * @param email
+     * @return Venturer mit der E-Mail
+     */
     @Path("/{email}")
     @GET
     @Transactional
@@ -43,6 +51,11 @@ public class VenturerController {
     }
 
     @JWTAuthed
+    /**
+     *
+     * @param id
+     * @return Venturer mit der id
+     */
     @Path("/{id}")
     @GET
     @Transactional
@@ -51,6 +64,11 @@ public class VenturerController {
         return ventService.getVenturer(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return alle Tasks eines Ventures
+     */
     @JWTAuthed
     @Path("/{id}/tasks")
     @GET
@@ -59,6 +77,12 @@ public class VenturerController {
     public Set<Task> getVenturersTasks(@PathParam("id") int id) {
         return ventService.getTasks(id);
     }
+
+    /**
+     *
+     * @param venturer_id
+     * @return alle Venturer außer der mit dieser id
+     */
 
     @JWTAuthed
     @Path("/otherFellows/{vent_id}")

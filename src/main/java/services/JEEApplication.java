@@ -4,13 +4,16 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.servers.Server;
-import io.swagger.v3.oas.annotations.servers.ServerVariable;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+/**
+ * Application
+ */
 
+/**
+ * Open API (früher swagger) Konfiguration
+ */
 @OpenAPIDefinition(
         info = @Info(
                 title = "Challenge Box",

@@ -12,16 +12,29 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Service zum anlegen und abfragen von Venturers
+ */
 @RequestScoped
 public class VenturerService {
 
     @PersistenceContext
     EntityManager em;
 
+    /**
+     *
+     * @param id
+     * @return Venturer mit der id
+     */
     public Venturer getVenturer(int id) {
         return em.find(Venturer.class, id);
     }
 
+    /**
+     *
+     * @param email
+     * @return Venturer mit der email
+     */
     public Venturer getVenturer(String email) {
         Query query = em.createNamedQuery("findVenturerByEmail");
         String encodedMail = "";
@@ -34,16 +47,30 @@ public class VenturerService {
         return (Venturer)query.getSingleResult();
     }
 
+    /**
+     *
+     * @return alle Venturer
+     */
     public List<Venturer> getVenturers() {
         Query query = em.createNamedQuery("findAllVenturers");
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param id
+     * @return Tasks eines Venturers
+     */
     public Set<Task> getTasks(int id){
         Venturer v = em.find(Venturer.class, id);
         return v.getTasks();
     }
 
+    /**
+     *
+     * @param venturer_id
+     * @return alle Venturer außer der mit dieser id
+     */
     public List<Venturer> otherFellows(int venturer_id){
         Venturer this_venturer = em.find(Venturer.class, venturer_id);
         List<Venturer> otherVenturers = this.getVenturers();

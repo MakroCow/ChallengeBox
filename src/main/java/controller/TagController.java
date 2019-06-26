@@ -11,6 +11,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * Controller der die REST APIs zum abfragen und anlegen von Tags implemntiert
+ */
+
 @JWTAuthed
 @Path("/tag")
 public class TagController {
@@ -19,6 +23,10 @@ public class TagController {
     TagService tagService;
 
 
+    /**
+     *
+     * @return alle Tags
+     */
     @Path("/all")
     @GET
     @Transactional
@@ -29,6 +37,11 @@ public class TagController {
     }
 
 
+    /**
+     *
+     * @param id
+     * @return Tag mit der id
+     */
     @Path("/id/{id}")
     @GET
     @Transactional
@@ -39,6 +52,11 @@ public class TagController {
     }
 
 
+    /**
+     *
+     * @param tagName
+     * @return tag mit dem Namen
+     */
     @Path("/name/{tagName}")
     @GET
     @Transactional
@@ -48,7 +66,11 @@ public class TagController {
         return tagService.findTagByName(tagName);
     }
 
-
+    /**
+     *
+     * @param tagName
+     * @return angelegten tag
+     */
     @Path("/")
     @POST
     @Transactional

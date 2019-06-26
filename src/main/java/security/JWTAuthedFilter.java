@@ -12,6 +12,9 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * Filter für die Annotation JWTAuthed
+ */
 @Provider
 @JWTAuthed
 @Priority(Priorities.AUTHENTICATION)
@@ -26,6 +29,7 @@ public class JWTAuthedFilter implements ContainerRequestFilter {
 
         try {
             jwtService.valid(token.split(" ")[1]);
+
         } catch (Exception e) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
         }

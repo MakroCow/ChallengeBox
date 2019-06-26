@@ -1,5 +1,7 @@
 package entities;
-
+/**
+ * Datenobjekt User für Login
+ */
 public class User {
     private String username;
 
