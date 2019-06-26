@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Code von https://github.com/GEDOPLAN/jwt-angular-javaee
+ * Filter für die Annotation JWTAuthed
  */
 @Provider
 @JWTAuthed

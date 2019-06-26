@@ -4,8 +4,16 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Datenobjekt Challenge
+ */
+
 @Entity
+/**
+ * benötigte querys für die Services
+ */
 @NamedQueries({
+
         @NamedQuery(name = "findAllChallenges", query = "SELECT c FROM Challenge c")}
 )
 public class Challenge {

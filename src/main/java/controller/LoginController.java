@@ -26,7 +26,7 @@ public class LoginController {
     /**
      *
      * @param login
-     * @return gültigen jwt
+     * @return gültigen jwt;
      * bei falschen credentials wird der HTTP Code unauthorized zurückgegeben
      */
 

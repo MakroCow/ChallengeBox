@@ -6,7 +6,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Target;
 
 /**
- * Code von https://github.com/GEDOPLAN/jwt-angular-javaee
+ * Annotation, die die APIs absichert
+ * wenn die Annotation an eine Endpunkt Implemntierung angefügt wird, wird auf gültigen jwt getestet
  */
 @javax.ws.rs.NameBinding
 @Retention(RUNTIME)

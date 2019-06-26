@@ -3,8 +3,13 @@ package entities;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.*;
-
+/**
+ * Datenobjekt Venturer
+ */
 @Entity
+/**
+ * benötigte querys für die Services
+ */
 @NamedQueries({
         @NamedQuery(name = "findAllVenturers", query = "SELECT v FROM Venturer v"),
         @NamedQuery(name = "findVenturerByName", query = "SELECT v FROM Venturer v WHERE v.lastName = :lastname"),

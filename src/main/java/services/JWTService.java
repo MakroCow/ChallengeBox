@@ -7,12 +7,18 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
- * Code von https://github.com/GEDOPLAN/jwt-angular-javaee
+ * Service zum erstellen und prüfen des jwt
  */
 @ApplicationScoped
 public class JWTService {
 
     private List<String> validJWTTokens = new ArrayList();
+
+    /**
+     * generriert aus der mail einen jwt
+     * @param mail
+     * @return jwt
+     */
 
     public String generateJWTToken(String mail) {
         // ...read user information from database...
@@ -28,6 +34,11 @@ public class JWTService {
         return token;
     }
 
+    /**
+     * validiert jwt
+     * @param token
+     */
+
     public void valid(String token) {
         if (!this.validJWTTokens.contains(token)) {
             throw new RuntimeException("Token is not valid anymore");
@@ -39,6 +50,10 @@ public class JWTService {
         System.out.println("Request is JWT-sigend with user: " + username);
     }
 
+    /**
+     * entfernt jwt
+     * @param token
+     */
     public void removeToken(String token) {
         this.validJWTTokens.remove(token);
     }

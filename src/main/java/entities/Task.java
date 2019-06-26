@@ -2,8 +2,13 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
-
+/**
+ * Datenobjekt Task
+ */
 @Entity
+/**
+ * benötigte querys für die Services
+ */
 @NamedQueries({
         @NamedQuery(name = "findAllTasks", query = "SELECT t FROM Task t WHERE t.venturer.id = :venturer_id"),
         @NamedQuery(name = "findDoneTasks", query = "SELECT t FROM Task t WHERE (t.done is not null) AND t.venturer.id = :venturer_id"),
