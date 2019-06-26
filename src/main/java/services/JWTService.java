@@ -43,10 +43,15 @@ public class JWTService {
      */
 
     public void valid(String token) {
+        for(String s: validJWTTokens){
+            System.out.println(s);
+        }
+        System.out.println(this.validJWTTokens.contains(token));
         if (!this.validJWTTokens.contains(token)) {
+            System.out.println("HIER");
             throw new RuntimeException("Token is not valid anymore");
         }
-
+        System.out.println("DA");
         JwtParser signed = Jwts.parser().setSigningKey("JWT-Key");
 
         String username = signed.parseClaimsJws(token).getBody().getSubject();
