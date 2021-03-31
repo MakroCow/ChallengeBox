@@ -29,7 +29,7 @@
         <version.wildfly>16.0.0.Final</version.wildfly>
         <version.primefaces>6.2</version.primefaces>
         <version.bootsfaces>1.4.1</version.bootsfaces>
-        <version.guava>23.6-jre</version.guava>
+        <version.guava>29.0-jre</version.guava>
     </properties>
 
     <repositories>
